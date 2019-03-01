@@ -65,6 +65,7 @@ using UvMap = std::array<UvSet, 8>;
 class MaterialGenerator final {
 public:
     MaterialGenerator(filament::Engine* engine);
+    ~MaterialGenerator();
 
     // Creates or fetches a compiled Filament material. The given configuration key might be mutated
     // due to resource constraints. The second argument is populated with a small table that maps

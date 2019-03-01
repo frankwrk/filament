@@ -103,13 +103,13 @@ public:
      * Takes a pointer to the contents of a JSON-based glTF 2.0 file and returns a bundle
      * of Filament objects. Returns null on failure.
      */
-    FilamentAsset* createAssetFromJson(uint8_t const* bytes, uint32_t nbytes);
+    FilamentAsset* createAssetFromJson(const uint8_t* bytes, uint32_t nbytes);
 
     /**
      * Takes a pointer to the contents of a GLB glTF 2.0 file and returns a bundle
      * of Filament objects. Returns null on failure.
      */
-    FilamentAsset* createAssetFromBinary(uint8_t const* bytes, uint32_t nbytes);
+    FilamentAsset* createAssetFromBinary(const uint8_t* bytes, uint32_t nbytes);
 
     /** Destroys the given asset and all of its associated Filament objects. */
     void destroyAsset(const FilamentAsset* asset);
