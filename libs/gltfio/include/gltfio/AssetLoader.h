@@ -114,14 +114,6 @@ public:
     /** Destroys the given asset and all of its associated Filament objects. */
     void destroyAsset(const FilamentAsset* asset);
 
-    /**
-     * Enables or disables shadows on all subsequently loaded assets.
-     *
-     * Initially, loaded assets will cast and receive shadows.
-     */
-    void castShadowsByDefault(bool enable);
-    void receiveShadowsByDefault(bool enable);
-
     /** Gets cached materials, used internally to create material instances for assets. */
     size_t getMaterialsCount() const noexcept;
     const filament::Material* const* getMaterials() const noexcept;

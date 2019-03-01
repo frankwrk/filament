@@ -103,14 +103,6 @@ struct FAssetLoader : public AssetLoader {
         delete asset;
     }
 
-    void castShadowsByDefault(bool enable) {
-        mCastShadows = enable;
-    }
-
-    void receiveShadowsByDefault(bool enable) {
-        mReceiveShadows = enable;
-    }
-
     size_t getMaterialsCount() const noexcept {
         return mMaterials.getMaterialsCount();
     }
@@ -133,9 +125,6 @@ struct FAssetLoader : public AssetLoader {
             const cgltf_texture* srcTexture, bool srgb);
     void importSkinningData(Skin& dstSkin, const cgltf_skin& srcSkin);
     bool primitiveHasVertexColor(const cgltf_primitive* inPrim) const;
-
-    bool mCastShadows = true;
-    bool mReceiveShadows = true;
 
     EntityManager& mEntityManager;
     RenderableManager& mRenderableManager;
@@ -331,8 +320,8 @@ void FAssetLoader::createRenderable(const cgltf_node* node, Entity entity) {
     builder
         .boundingBox({aabb.min, aabb.max})
         .culling(true)
-        .castShadows(mCastShadows)
-        .receiveShadows(mReceiveShadows)
+        .castShadows(true)
+        .receiveShadows(true)
         .build(*mEngine, entity);
 
     // TODO: support vertex morphing by honoring mesh->weights and mesh->weight_count.
@@ -700,14 +689,6 @@ FilamentAsset* AssetLoader::createAssetFromBinary(uint8_t const* bytes, uint32_t
 
 void AssetLoader::destroyAsset(const FilamentAsset* asset) {
     upcast(this)->destroyAsset(upcast(asset));
-}
-
-void AssetLoader::castShadowsByDefault(bool enable) {
-    upcast(this)->castShadowsByDefault(enable);
-}
-
-void AssetLoader::receiveShadowsByDefault(bool enable) {
-    upcast(this)->receiveShadowsByDefault(enable);
 }
 
 size_t AssetLoader::getMaterialsCount() const noexcept {
